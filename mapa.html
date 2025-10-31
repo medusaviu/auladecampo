@@ -41,16 +41,16 @@
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/Pernambuco_3.js"></script>
-        <script src="data/pontos_fotos_viagemoroco_4.js"></script>
+        <script src="data/AcervoFotogrfico_4.js"></script>
         <script src="data/SantaMariadaBoaVista_5.js"></script>
         <script src="data/Oroc_6.js"></script>
         <script src="data/Petrolina_7.js"></script>
-        <script src="data/OROCSMBV_8.js"></script>
-        <script src="data/PNZOROC_9.js"></script>
+        <script src="data/OrocSantaMariadaBoaVista_8.js"></script>
+        <script src="data/PetrolinaOroc_9.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-9.391884498866439,-40.48175782229767],[-9.390170649713022,-40.47981602346394]]);
+        }).fitBounds([[-9.403953227598153,-40.49073951799001],[-9.383387109900136,-40.46743781274132]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -206,14 +206,12 @@
             return {
                 pane: 'pane_Pernambuco_3',
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(251,245,232,0.42745098039215684)',
+                weight: 2.0, 
+                fillOpacity: 0,
                 interactive: false,
             }
         }
@@ -231,7 +229,7 @@
         });
         bounds_group.addLayer(layer_Pernambuco_3);
         map.addLayer(layer_Pernambuco_3);
-        function pop_pontos_fotos_viagemoroco_4(feature, layer) {
+        function pop_AcervoFotogrfico_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -242,6 +240,9 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['PONTO'] !== null ? '<img src="images/' + String(feature.properties['PONTO']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LINK'] !== null ? autolinker.link(String(feature.properties['LINK']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -250,42 +251,42 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_pontos_fotos_viagemoroco_4_0() {
+        function style_AcervoFotogrfico_4_0() {
             return {
-                pane: 'pane_pontos_fotos_viagemoroco_4',
-                radius: 5.6,
+                pane: 'pane_AcervoFotogrfico_4',
+                radius: 8.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(0,248,255,1.0)',
+                fillColor: 'rgba(15,0,219,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_pontos_fotos_viagemoroco_4');
-        map.getPane('pane_pontos_fotos_viagemoroco_4').style.zIndex = 404;
-        map.getPane('pane_pontos_fotos_viagemoroco_4').style['mix-blend-mode'] = 'normal';
-        var layer_pontos_fotos_viagemoroco_4 = new L.geoJson(json_pontos_fotos_viagemoroco_4, {
+        map.createPane('pane_AcervoFotogrfico_4');
+        map.getPane('pane_AcervoFotogrfico_4').style.zIndex = 404;
+        map.getPane('pane_AcervoFotogrfico_4').style['mix-blend-mode'] = 'normal';
+        var layer_AcervoFotogrfico_4 = new L.geoJson(json_AcervoFotogrfico_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_pontos_fotos_viagemoroco_4',
-            layerName: 'layer_pontos_fotos_viagemoroco_4',
-            pane: 'pane_pontos_fotos_viagemoroco_4',
-            onEachFeature: pop_pontos_fotos_viagemoroco_4,
+            dataVar: 'json_AcervoFotogrfico_4',
+            layerName: 'layer_AcervoFotogrfico_4',
+            pane: 'pane_AcervoFotogrfico_4',
+            onEachFeature: pop_AcervoFotogrfico_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_pontos_fotos_viagemoroco_4_0(feature));
+                return L.circleMarker(latlng, style_AcervoFotogrfico_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_pontos_fotos_viagemoroco_4);
-        map.addLayer(layer_pontos_fotos_viagemoroco_4);
+        bounds_group.addLayer(layer_AcervoFotogrfico_4);
+        map.addLayer(layer_AcervoFotogrfico_4);
         function pop_SantaMariadaBoaVista_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -466,7 +467,7 @@
         });
         bounds_group.addLayer(layer_Petrolina_7);
         map.addLayer(layer_Petrolina_7);
-        function pop_OROCSMBV_8(feature, layer) {
+        function pop_OrocSantaMariadaBoaVista_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['compriment'] !== null ? autolinker.link(String(feature.properties['compriment']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -494,9 +495,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_OROCSMBV_8_0() {
+        function style_OrocSantaMariadaBoaVista_8_0() {
             return {
-                pane: 'pane_OROCSMBV_8',
+                pane: 'pane_OrocSantaMariadaBoaVista_8',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -507,9 +508,9 @@
                 interactive: false,
             }
         }
-        function style_OROCSMBV_8_1() {
+        function style_OrocSantaMariadaBoaVista_8_1() {
             return {
-                pane: 'pane_OROCSMBV_8',
+                pane: 'pane_OrocSantaMariadaBoaVista_8',
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '8.0,4.0',
@@ -520,39 +521,39 @@
                 interactive: false,
             }
         }
-        function style_OROCSMBV_8_2() {
+        function style_OrocSantaMariadaBoaVista_8_2() {
             return {
-                pane: 'pane_OROCSMBV_8',
+                pane: 'pane_OrocSantaMariadaBoaVista_8',
                 interactive: false,
             }
         }
-        function style_OROCSMBV_8_3() {
+        function style_OrocSantaMariadaBoaVista_8_3() {
             return {
-                pane: 'pane_OROCSMBV_8',
+                pane: 'pane_OrocSantaMariadaBoaVista_8',
                 interactive: false,
             }
         }
-        function style_OROCSMBV_8_4() {
+        function style_OrocSantaMariadaBoaVista_8_4() {
             return {
-                pane: 'pane_OROCSMBV_8',
+                pane: 'pane_OrocSantaMariadaBoaVista_8',
                 interactive: false,
             }
         }
-        map.createPane('pane_OROCSMBV_8');
-        map.getPane('pane_OROCSMBV_8').style.zIndex = 408;
-        map.getPane('pane_OROCSMBV_8').style['mix-blend-mode'] = 'normal';
-        var layer_OROCSMBV_8 = new L.geoJson.multiStyle(json_OROCSMBV_8, {
+        map.createPane('pane_OrocSantaMariadaBoaVista_8');
+        map.getPane('pane_OrocSantaMariadaBoaVista_8').style.zIndex = 408;
+        map.getPane('pane_OrocSantaMariadaBoaVista_8').style['mix-blend-mode'] = 'normal';
+        var layer_OrocSantaMariadaBoaVista_8 = new L.geoJson.multiStyle(json_OrocSantaMariadaBoaVista_8, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_OROCSMBV_8',
-            layerName: 'layer_OROCSMBV_8',
-            pane: 'pane_OROCSMBV_8',
-            onEachFeature: pop_OROCSMBV_8,
-            styles: [style_OROCSMBV_8_0,style_OROCSMBV_8_1,style_OROCSMBV_8_2,style_OROCSMBV_8_3,style_OROCSMBV_8_4,]
+            dataVar: 'json_OrocSantaMariadaBoaVista_8',
+            layerName: 'layer_OrocSantaMariadaBoaVista_8',
+            pane: 'pane_OrocSantaMariadaBoaVista_8',
+            onEachFeature: pop_OrocSantaMariadaBoaVista_8,
+            styles: [style_OrocSantaMariadaBoaVista_8_0,style_OrocSantaMariadaBoaVista_8_1,style_OrocSantaMariadaBoaVista_8_2,style_OrocSantaMariadaBoaVista_8_3,style_OrocSantaMariadaBoaVista_8_4,]
         });
-        bounds_group.addLayer(layer_OROCSMBV_8);
-        map.addLayer(layer_OROCSMBV_8);
-        function pop_PNZOROC_9(feature, layer) {
+        bounds_group.addLayer(layer_OrocSantaMariadaBoaVista_8);
+        map.addLayer(layer_OrocSantaMariadaBoaVista_8);
+        function pop_PetrolinaOroc_9(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['compriment'] !== null ? autolinker.link(String(feature.properties['compriment']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -577,9 +578,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_PNZOROC_9_0() {
+        function style_PetrolinaOroc_9_0() {
             return {
-                pane: 'pane_PNZOROC_9',
+                pane: 'pane_PetrolinaOroc_9',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -590,9 +591,9 @@
                 interactive: false,
             }
         }
-        function style_PNZOROC_9_1() {
+        function style_PetrolinaOroc_9_1() {
             return {
-                pane: 'pane_PNZOROC_9',
+                pane: 'pane_PetrolinaOroc_9',
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '8.0,4.0',
@@ -603,38 +604,38 @@
                 interactive: false,
             }
         }
-        function style_PNZOROC_9_2() {
+        function style_PetrolinaOroc_9_2() {
             return {
-                pane: 'pane_PNZOROC_9',
+                pane: 'pane_PetrolinaOroc_9',
                 interactive: false,
             }
         }
-        function style_PNZOROC_9_3() {
+        function style_PetrolinaOroc_9_3() {
             return {
-                pane: 'pane_PNZOROC_9',
+                pane: 'pane_PetrolinaOroc_9',
                 interactive: false,
             }
         }
-        function style_PNZOROC_9_4() {
+        function style_PetrolinaOroc_9_4() {
             return {
-                pane: 'pane_PNZOROC_9',
+                pane: 'pane_PetrolinaOroc_9',
                 interactive: false,
             }
         }
-        map.createPane('pane_PNZOROC_9');
-        map.getPane('pane_PNZOROC_9').style.zIndex = 409;
-        map.getPane('pane_PNZOROC_9').style['mix-blend-mode'] = 'normal';
-        var layer_PNZOROC_9 = new L.geoJson.multiStyle(json_PNZOROC_9, {
+        map.createPane('pane_PetrolinaOroc_9');
+        map.getPane('pane_PetrolinaOroc_9').style.zIndex = 409;
+        map.getPane('pane_PetrolinaOroc_9').style['mix-blend-mode'] = 'normal';
+        var layer_PetrolinaOroc_9 = new L.geoJson.multiStyle(json_PetrolinaOroc_9, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_PNZOROC_9',
-            layerName: 'layer_PNZOROC_9',
-            pane: 'pane_PNZOROC_9',
-            onEachFeature: pop_PNZOROC_9,
-            styles: [style_PNZOROC_9_0,style_PNZOROC_9_1,style_PNZOROC_9_2,style_PNZOROC_9_3,style_PNZOROC_9_4,]
+            dataVar: 'json_PetrolinaOroc_9',
+            layerName: 'layer_PetrolinaOroc_9',
+            pane: 'pane_PetrolinaOroc_9',
+            onEachFeature: pop_PetrolinaOroc_9,
+            styles: [style_PetrolinaOroc_9_0,style_PetrolinaOroc_9_1,style_PetrolinaOroc_9_2,style_PetrolinaOroc_9_3,style_PetrolinaOroc_9_4,]
         });
-        bounds_group.addLayer(layer_PNZOROC_9);
-        map.addLayer(layer_PNZOROC_9);
+        bounds_group.addLayer(layer_PetrolinaOroc_9);
+        map.addLayer(layer_PetrolinaOroc_9);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -689,14 +690,14 @@
             }
         });
         var overlaysTree = [
-        {label: '<b>PERCURSO</b>',  selectAllCheckbox: true, children: [
-            {label: '<img src="legend/PNZOROC_9.png" /> PNZ-OROCÓ', layer: layer_PNZOROC_9},
-            {label: '<img src="legend/OROCSMBV_8.png" /> OROCÓ-SMBV', layer: layer_OROCSMBV_8},]},
-        {label: '<b>group1</b>',  selectAllCheckbox: true, children: [
+        {label: '<b>PERCURSO:</b>',  selectAllCheckbox: true, children: [
+            {label: '<img src="legend/PetrolinaOroc_9.png" /> Petrolina - Orocó', layer: layer_PetrolinaOroc_9},
+            {label: '<img src="legend/OrocSantaMariadaBoaVista_8.png" /> Orocó - Santa Maria da Boa Vista', layer: layer_OrocSantaMariadaBoaVista_8},]},
+        {label: '<b>MUNICIPIOS VISITADOS:</b>',  selectAllCheckbox: true, children: [
             {label: '<img src="legend/Petrolina_7.png" /> Petrolina', layer: layer_Petrolina_7},
             {label: '<img src="legend/Oroc_6.png" /> Orocó', layer: layer_Oroc_6},
             {label: '<img src="legend/SantaMariadaBoaVista_5.png" /> Santa Maria da Boa Vista', layer: layer_SantaMariadaBoaVista_5},]},
-            {label: '<img src="legend/pontos_fotos_viagemoroco_4.png" /> pontos_fotos_viagemoroco', layer: layer_pontos_fotos_viagemoroco_4},
+            {label: '<img src="legend/AcervoFotogrfico_4.png" /> Acervo Fotográfico', layer: layer_AcervoFotogrfico_4},
             {label: '<img src="legend/Pernambuco_3.png" /> Pernambuco', layer: layer_Pernambuco_3},
             {label: "Google Satellite", layer: layer_GoogleSatellite_2},
             {label: "OpenTopoMap", layer: layer_OpenTopoMap_1},
@@ -762,6 +763,55 @@
             }  
         });       
         setBounds();
+        var i = 0;
+        layer_SantaMariadaBoaVista_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nome'] !== null?String('<div style="color: #323232; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nome']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SantaMariadaBoaVista_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Oroc_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nome'] !== null?String('<div style="color: #323232; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nome']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Oroc_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Petrolina_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nome'] !== null?String('<div style="color: #323232; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nome']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Petrolina_7'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_SantaMariadaBoaVista_5,layer_Oroc_6,layer_Petrolina_7]);
+        map.on("zoomend", function(){
+            resetLabels([layer_SantaMariadaBoaVista_5,layer_Oroc_6,layer_Petrolina_7]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_SantaMariadaBoaVista_5,layer_Oroc_6,layer_Petrolina_7]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_SantaMariadaBoaVista_5,layer_Oroc_6,layer_Petrolina_7]);
+        });
         </script>        
     </body>
 </html>
